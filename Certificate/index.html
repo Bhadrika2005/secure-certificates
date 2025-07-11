@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Certificate</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <!-- Certificate Container -->
+    <div class="certificate" id="certificate">
+        <div class="main-content">
+            <h2>Certificate of Participation</h2>
+            <p>This certificate is proudly presented to</p>
+            <h1 id="visibleName">John Doe</h1>
+            <p>for successfully participating in</p>
+            <h3>Secure Certificate System Demo</h3>
+            <p>Issued on: <span id="date">July 9, 2025</span></p>
+        </div>
+
+        <!-- Watermark Text on Borders -->
+        <div class="border-overlay border-top" id="topBorder"></div>
+        <div class="border-overlay border-right" id="rightBorder"></div>
+        <div class="border-overlay border-bottom" id="bottomBorder"></div>
+
+        <!-- QR Code Box -->
+        <div id="qrcode" class="qr-code-box"></div>
+    </div>
+
+    <!-- Download Button -->
+    <button onclick="downloadPDF()" style="margin-top: 30px; font-size: 16px;">Download as PDF</button>
+
+    <script>
+        const userName = "John Doe";
+        const certID = "CERT123456";
+        const verifyLink = `http://192.168.168.143/verify.html?id=${certID}`;
+
+        // Set visible name and watermark
+        document.getElementById("visibleName").innerText = userName;
+        const repeated = (userName + " • ").repeat(20);
+        document.getElementById("topBorder").innerText = repeated;
+        document.getElementById("rightBorder").innerText = repeated;
+        document.getElementById("bottomBorder").innerText = repeated;
+
+        // Generate QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: verifyLink,
+            width: 100,
+            height: 100
+        });
+
+        // Download PDF function
+        function downloadPDF() {
+            const element = document.getElementById('certificate');
+            const opt = {
+                margin: 0,
+                filename: `${userName}_Certificate.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 3 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>

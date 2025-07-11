@@ -1,0 +1,91 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 40px;
+}
+
+.certificate {
+    width: 1000px;
+    height: 700px;
+    background-color: white;
+    border: 10px solid #002855;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-content {
+    padding: 50px;
+    text-align: center;
+    color: #002855;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 20px 0;
+    color: #001F3F;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* Watermark border text */
+.border-overlay {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(0, 40, 85, 0.03); /* Subtle border color */
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+}
+
+.border-top {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+}
+
+.border-right {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    writing-mode: vertical-rl;
+    text-align: center;
+    line-height: 10px;
+}
+
+.border-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+}
+
+/* QR Code */
+.qr-code-box {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    height: 100px;
+}
