@@ -37,17 +37,21 @@
     <script>
         const userName = "John Doe";
         const certID = "CERT123456";
-        const verifyLink = `http://192.168.168.143/verify.html?id=${certID}`;
+        const verifyLink = "https://bhadrika2005.github.io/secure-certificates/Certificate/verify-CERT123456.html";
 
-        // Set visible name and watermark
+        // Update visible name
         document.getElementById("visibleName").innerText = userName;
+
+        // Update watermark borders
         const repeated = (userName + " • ").repeat(20);
         document.getElementById("topBorder").innerText = repeated;
         document.getElementById("rightBorder").innerText = repeated;
         document.getElementById("bottomBorder").innerText = repeated;
 
-        // Generate QR Code
-        new QRCode(document.getElementById("qrcode"), {
+        // Clear old QR and generate new one
+        const qrDiv = document.getElementById("qrcode");
+        qrDiv.innerHTML = ""; 
+        new QRCode(qrDiv, {
             text: verifyLink,
             width: 100,
             height: 100
